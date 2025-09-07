@@ -93,7 +93,7 @@ public class RobotContainer {
                             *
                             (Math.PI *
                                     2))
-            .headingWhile(true)
+            .headingWhile(false)
             .translationHeadingOffset(true)
             .translationHeadingOffset(Rotation2d.fromDegrees(
                     0));
@@ -155,7 +155,11 @@ public class RobotContainer {
             driverXbox.start().onTrue(Commands.runOnce(() -> drivebase.resetOdometry(new Pose2d(3, 3, new Rotation2d()))));
             driverXbox.button(1).whileTrue(drivebase.sysIdDriveMotorCommand());
             driverXbox.button(2).whileTrue(Commands.runEnd(() -> driveDirectAngleKeyboard.driveToPoseEnabled(true),
-                    () -> driveDirectAngleKeyboard.driveToPoseEnabled(false)));
+                    () -> {
+                        driveDirectAngleKeyboard.driveToPoseEnabled(false);
+                        Rotation2d currentRotation = drivebase.getPose().getRotation();
+//                        driveDirectAngleKeyboard.setTargetHeading(currentRotation);
+                    }));
 
             // driverXbox.b().whileTrue(
             // drivebase.driveToPose(
