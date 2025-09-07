@@ -4,9 +4,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
 import swervelib.math.Matter;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean constants. This
@@ -35,6 +40,19 @@ public final class Constants {
 
         // Hold time on motor brakes when disabled
         public static final double WHEEL_LOCK_TIME = 10; // seconds
+    }
+
+    public static final class VisionConstants {
+        public enum WAYPOINT_LOCATIONS {
+            FRONT, FRONT_LEFT, BACK_LEFT, BACK
+        }
+
+        public static final java.util.Map<WAYPOINT_LOCATIONS, Pose2d> WAYPOINTS = java.util.Map.of(
+                WAYPOINT_LOCATIONS.FRONT, new Pose2d(14.24, 3.99, new Rotation2d(Math.toRadians(0))),
+                WAYPOINT_LOCATIONS.FRONT_LEFT, new Pose2d(13.75, 3.03, new Rotation2d(Math.toRadians(300))),
+                WAYPOINT_LOCATIONS.BACK_LEFT, new Pose2d(12.39, 2.88, new Rotation2d(Math.toRadians(240))),
+                WAYPOINT_LOCATIONS.BACK, new Pose2d(11.87, 3.99, new Rotation2d(Math.toRadians(180)))
+        );
     }
 
     public static class OperatorConstants {

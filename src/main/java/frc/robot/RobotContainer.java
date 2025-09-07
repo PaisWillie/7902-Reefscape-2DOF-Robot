@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
@@ -141,7 +142,7 @@ public class RobotContainer {
             Pose2d target = new Pose2d(new Translation2d(1, 4),
                     Rotation2d.fromDegrees(90));
             // drivebase.getSwerveDrive().field.getObject("targetPose").setPose(target);
-            driveDirectAngleKeyboard.driveToPose(() -> target,
+            driveDirectAngleKeyboard.driveToPose(drivebase::getNearestWaypoint,
                     new ProfiledPIDController(5,
                             0,
                             0,
